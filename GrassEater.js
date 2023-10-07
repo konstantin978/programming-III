@@ -1,5 +1,5 @@
 class GrassEater {
-    constructor(x,y,index) {
+    constructor(x, y, index) {
         this.x = x;
         this.y = y;
         this.energy = 8;
@@ -7,38 +7,38 @@ class GrassEater {
         this.directions = [];
     }
 
-    getNewCoordinates(){
+    getNewCoordinates() {
         this.directions = [
-             [this.x - 1, this.y - 1],
-             [this.x    , this.y - 1],
-             [this.x + 1, this.y - 1],
-             [this.x - 1, this.y    ],
-             [this.x + 1, this.y    ],
-             [this.x - 1, this.y + 1],
-             [this.x    , this.y + 1],
-             [this.x + 1, this.y + 1]
+            [this.x - 1, this.y - 1],
+            [this.x, this.y - 1],
+            [this.x + 1, this.y - 1],
+            [this.x - 1, this.y],
+            [this.x + 1, this.y],
+            [this.x - 1, this.y + 1],
+            [this.x, this.y + 1],
+            [this.x + 1, this.y + 1]
         ];
-     }
-     
-        chooseCell(character) {
-            var found = [];
-            this.getNewCoordinates()
-            for (var i in this.directions) {
-            var x = this.directions[i][0];
-            var y = this.directions[i][1];
-            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length){
-            if (matrix[y][x] == character) {
-                found.push(this.directions[i]);
+    }
+
+    chooseCell(character) {
+        var found = [];
+        this.getNewCoordinates()
+        for (let i in this.directions) {
+            let x = this.directions[i][0];
+            let y = this.directions[i][1];
+            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
+                if (matrix[y][x] == character) {
+                    found.push(this.directions[i]);
+                }
             }
+
         }
-        
-        } 
         return found;
     }
     mul() {
         var newCell = random(this.chooseCell(1));
         if (newCell) {
-            var newGrassE = new GrassEater(newCell[0], newCell[1], this.index);
+            let newGrassE = new GrassEater(newCell[0], newCell[1], this.index);
             grassEaterArr.push(newGrassE);
             matrix[newCell[1]][newCell[0]] = 2;
             this.energy = 8;
@@ -56,7 +56,7 @@ class GrassEater {
             matrix[food[1]][food[0]] = 2
             this.x = newX
             this.y = newY
-            for (var i in grassArr) {
+            for (let i in grassArr) {
                 if (newX == grassArr[i].x && newY == grassArr[i].y) {
                     grassArr.splice(i, 1);
                     break;
@@ -91,7 +91,7 @@ class GrassEater {
 
     die() {
         matrix[this.y][this.x] = 0;
-        for (var i in grassEaterArr) {
+        for (let i in grassEaterArr) {
             if (this.x == grassEaterArr[i].x && this.y == grassEaterArr[i].y) {
                 grassEaterArr.splice(i, 1);
                 break;

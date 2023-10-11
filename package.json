@@ -1,0 +1,23 @@
+{
+  "name": "programming-iii",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/konstantin978/programming-III.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/konstantin978/programming-III/issues"
+  },
+  "homepage": "https://github.com/konstantin978/programming-III#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

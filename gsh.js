@@ -1,4 +1,7 @@
-class Gishatich {
+var random = require("./random");
+
+
+module.exports = class Gishatich {
     constructor(x, y, index) {
         this.x = x;
         this.y = y;

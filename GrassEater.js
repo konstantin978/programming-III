@@ -1,4 +1,7 @@
-class GrassEater {
+var random = require("./random");
+
+
+module.exports = class GrassEater {
     constructor(x, y, index) {
         this.x = x;
         this.y = y;

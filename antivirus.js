@@ -1,4 +1,4 @@
-class Antivirus {
+module.exports = class Antivirus {
     constructor(x, y, index) {
         this.x = x;
         this.y = y;

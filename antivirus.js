@@ -1,9 +1,10 @@
-module.exports = class Antivirus {
+const LivingCreature = require("./livingCreature")
+const random = require("./random");
+
+module.exports = class Antivirus extends LivingCreature{
     constructor(x, y, index) {
-        this.x = x;
-        this.y = y;
+        super(x, y, index)
         this.energy = 20;
-        this.index = index;
         this.directions = [];
     }
 
@@ -21,19 +22,8 @@ module.exports = class Antivirus {
     }
 
     chooseCell(character) {
-        var found = [];
         this.getNewCoordinates()
-        for (let i in this.directions) {
-            let x = this.directions[i][0];
-            let y = this.directions[i][1];
-            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-                if (matrix[y][x] == character) {
-                    found.push(this.directions[i]);
-                }
-            }
-
-        }
-        return found;
+        return super.chooseCell(character)
     }
 
     eat() {
@@ -87,7 +77,7 @@ module.exports = class Antivirus {
     }
 
     die() {
-        console.log(11);
+        // console.log(11);
         matrix[this.y][this.x] = 0;
         for (let i in antivirusArr) {
             if (this.x == antivirusArr[i].x && this.y == antivirusArr[i].y) {

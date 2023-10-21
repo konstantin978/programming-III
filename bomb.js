@@ -1,9 +1,11 @@
+const random = require("./random");
+
 module.exports = class Bomb {
     constructor(x, y) {
         this.x = x;
         this.y = y;
         this.bursted = false;
-        this.cooldown = random(25, 200);
+        this.cooldown = random(200);
         this.disappearCooldown = 5;
         matrix[y][x] = 6;
         this.directions = [
@@ -86,7 +88,17 @@ module.exports = class Bomb {
             this.removeObject(x, y)
         }
         this.bursted = true;
-        console.log(1);
+        let newX = food[0]
+        let newY = food[1]
+        this.x = newX
+        this.y = newY
+        for (let i in grassArr) {
+            if (newX == grassArr[i].x && newY == grassArr[i].y) {
+                grassArr.splice(i, 1);
+                break;
+            }
+        }
+        // console.log(1);
     }
 
     removeObject(x, y) {

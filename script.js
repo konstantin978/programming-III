@@ -1,49 +1,63 @@
-socket = io();
-
-var matrixx = [];
-
+const socket = io();
 const side = 15;
+const a = 55;
+const b = 70;
+const grassStd = document.getElementById('grass')
 
 function setup() {
-
     frameRate(10);
-    var m = 40;
-    var n = 20;
-    createCanvas(n.length * side, m * side);
+    createCanvas(b * side, a * side);
     background('#acacac');
 
+    function gamestop() {
+        alert("Game stopped");
+    }
+    function reloadpage() {
+        let f = confirm("Start again?");
+        if (f) {
+            window.location.reload();
+        }
+    }
+    setTimeout(() => {
+        reloadpage();
+    }, 55000);
+
+    setTimeout(() => {
+        gamestop();
+    }, 25000);
 }
 
-function draw() {
-    for (let y = 0; y < matrixx.length; y++) {
-        for (let x = 0; x < matrixx[y].length; x++) {
-            if (matrixx[y][x] == 1) {
+function drawGame(matrix) {
+    for (let y = 0; y < matrix.length; y++) {
+        for (let x = 0; x < matrix[y].length; x++) {
+            if (matrix[y][x] == 1) {
                 fill("green");
             }
-            else if (matrixx[y][x] == 0) {
+            else if (matrix[y][x] == 0) {
                 fill("#acacac");
             }
-            else if (matrixx[y][x] == 2) {
+            else if (matrix[y][x] == 2) {
                 fill("yellow")
             }
-            else if (matrixx[y][x] == 3) {
+            else if (matrix[y][x] == 3) {
                 fill("brown")
             }
-            else if (matrixx[y][x] == 4) {
+            else if (matrix[y][x] == 4) {
                 fill("red")
             }
-            else if (matrixx[y][x] == 5) {
+            else if (matrix[y][x] == 5) {
                 fill("cyan")
             }
-            else if (matrixx[y][x] == 6) {
+            else if (matrix[y][x] == 6) {
                 fill("black")
             }
             rect(x * side, y * side, side, side);
         }
+        socket.on('grassSt', (grassSt) => {
+            grassStd.innerHTML = `${grassSt} grass`;
+        })
     }
-
 }
 
-socket.on('matrix', function(matrix) {
-    matrixx = matrix;
-});
+
+socket.on("matrix", drawGame)

@@ -3,7 +3,9 @@ const socket = io();
 const side = 15;
 const a = 55;
 const b = 70;
+const grassActStd = document.getElementById('grassActual')
 const grassStd = document.getElementById('grass')
+
 
 
 function setup() {
@@ -56,9 +58,11 @@ function drawGame(matrix) {
             rect(x * side, y * side, side, side);
         }
         socket.on('grassSt', (grassSt) => {
-            grassStd.innerHTML = `${grassSt} Grasses in game`;
+            grassActStd.innerHTML = `${grassSt} Grasses in game`;
         })
-        
+        socket.on('grassStat', (grassStat) => {
+            grassStd.innerHTML = `${grassStat} Grasses from game start`;
+        })
     }
 }
 

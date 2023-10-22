@@ -55,9 +55,7 @@ module.exports = class Antivirus extends LivingCreature{
     move() {
         this.energy--;
         let emptyCells0 = this.chooseCell(0)
-        // let emptyCells1 = this.chooseCell(1)
         let newCell0 = random(emptyCells0)
-        // let newCell1 = random(emptyCells1)
         if (newCell0) {
             let newX0 = newCell0[0]
             let newY0 = newCell0[1]
@@ -66,22 +64,9 @@ module.exports = class Antivirus extends LivingCreature{
             this.x = newX0
             this.y = newY0
         }
-        // if (newCell1) {
-        //     let newX1 = newCell1[0]
-        //     let newY1 = newCell1[1]
-        //     matrix[this.y][this.x] = 1
-        //     matrix[newY1][newX1] = 5
-        //     this.x = newX1
-        //     this.y = newY1
-        //     for (const i in grassArr) {
-        //         if (!(grassArr[i].x == newX1 && grassArr[i].y == newY1)) continue;
-        //         grassArr.splice(i, 1);
-        //     }
-        // }
     }
 
     die() {
-        // console.log(11);
         matrix[this.y][this.x] = 0;
         for (let i in antivirusArr) {
             if (this.x == antivirusArr[i].x && this.y == antivirusArr[i].y) {

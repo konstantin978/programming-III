@@ -56,11 +56,10 @@ function drawGame(matrix) {
             rect(x * side, y * side, side, side);
         }
         socket.on('grassSt', (grassSt) => {
-            grassStd.innerHTML = `${grassSt} grass`;
+            grassStd.innerHTML = `${grassSt} Grasses in game`;
         })
+        
     }
 }
-
-
 
 socket.on("matrix", drawGame)

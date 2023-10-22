@@ -34,8 +34,8 @@ bombArr = [];
 // grassEaterCount = 20;
 matrix = [];
 grassSt = 0;
-const a = 10;
-const b = 10;
+const a = 55;
+const b = 70;
 
 for (let i = 0; i < a; i++) {
   matrix.push([]);
@@ -57,12 +57,12 @@ function createGame() {
     }
   }
 
-  kerparner(25, 1);
-  // kerparner(1, 2);
-  // kerparner(10, 3);
-  // kerparner(40, 4);
-  // kerparner(25, 5);
-  kerparner(1, 6);
+  kerparner(30, 1);
+  kerparner(5, 2);
+  kerparner(5, 3);
+  kerparner(10, 4);
+  kerparner(5, 5);
+  kerparner(2, 6);
 
   for (let y = 0; y < matrix.length; ++y) {
     for (let x = 0; x < matrix[y].length; ++x) {

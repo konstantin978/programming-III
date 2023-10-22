@@ -25,7 +25,7 @@ module.exports = class Gishatich extends LivingCreature {
         return super.chooseCell(character)
     }
     mul() {
-        var newCell = random(this.chooseCell(2));
+        var newCell = random(this.chooseCell(0,2));
         if (newCell) {
             let newGSH = new Gishatich(newCell[0], newCell[1], this.index);
             gshArr.push(newGSH);
@@ -36,7 +36,7 @@ module.exports = class Gishatich extends LivingCreature {
     }
 
     eat() {
-        let foods = this.chooseCell(1,2,3,4,5)
+        let foods = this.chooseCell(2,3,4,5)
         let food = random(foods)
         if (food) {
             this.energy++;

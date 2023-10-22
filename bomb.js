@@ -88,18 +88,8 @@ module.exports = class Bomb {
             this.removeObject(x, y)
         }
         this.bursted = true;
-        let newX = food[0]
-        let newY = food[1]
-        this.x = newX
-        this.y = newY
-        for (let i in grassArr) {
-            if (newX == grassArr[i].x && newY == grassArr[i].y) {
-                grassArr.splice(i, 1);
-                break;
-            }
-        }
-        // console.log(1);
     }
+    
 
     removeObject(x, y) {
         for (const i in grassEaterArr) {
@@ -109,6 +99,10 @@ module.exports = class Bomb {
         for (const i in gshArr) {
             if (!(gshArr[i].x == x && gshArr[i].y == y)) continue;
             gshArr.splice(i, 1);
+        }
+        for (const i in grassArr) {
+            if (!(grassArr[i].x == x && grassArr[i].y == y)) continue;
+            grassArr.splice(i, 1);
         }
     }
 }

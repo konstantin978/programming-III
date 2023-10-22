@@ -1,11 +1,13 @@
+
 const socket = io();
 const side = 15;
 const a = 55;
 const b = 70;
 const grassStd = document.getElementById('grass')
 
+
 function setup() {
-    frameRate(10);
+    frameRate(1);
     createCanvas(b * side, a * side);
     background('#acacac');
 
@@ -58,6 +60,7 @@ function drawGame(matrix) {
         })
     }
 }
+
 
 
 socket.on("matrix", drawGame)

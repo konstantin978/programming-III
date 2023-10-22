@@ -30,12 +30,12 @@ gshArr = [];
 virusArr = [];
 antivirusArr = [];
 bombArr = [];
-grassCount = 10;
-grassEaterCount = 20;
+// grassCount = 10;
+// grassEaterCount = 20;
 matrix = [];
 grassSt = 0;
-const a = 55;
-const b = 70;
+const a = 10;
+const b = 10;
 
 for (let i = 0; i < a; i++) {
   matrix.push([]);
@@ -57,12 +57,12 @@ function createGame() {
     }
   }
 
-  kerparner(30, 2);
-  kerparner(300, 1);
-  kerparner(10, 3);
-  kerparner(40, 4);
-  kerparner(25, 5);
-  kerparner(10, 6);
+  kerparner(25, 1);
+  // kerparner(1, 2);
+  // kerparner(10, 3);
+  // kerparner(40, 4);
+  // kerparner(25, 5);
+  kerparner(1, 6);
 
   for (let y = 0; y < matrix.length; ++y) {
     for (let x = 0; x < matrix[y].length; ++x) {
@@ -136,10 +136,11 @@ let intervalID;
 
 function startGame() {
   clearInterval(intervalID)
-  createGame()
+  // createGame()
   intervalID = setInterval(() => {
     drawGame()
     io.emit('grassSt', grassArr.length)
+    console.log(grassArr.length);
   }, 200)
 }
 

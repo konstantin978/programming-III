@@ -20,6 +20,8 @@ const Gishatich = require('./gsh')
 const Antivirus = require('./antivirus')
 const Bomb = require('./bomb')
 const Virus = require('./virus')
+const Laser = require('./laser')
+
 
 
 
@@ -30,6 +32,7 @@ gshArr = [];
 virusArr = [];
 antivirusArr = [];
 bombArr = [];
+laserArr = [];
 grassStat = 0;
 // grassCount = 10;
 // grassEaterCount = 20;
@@ -58,12 +61,14 @@ function createGame() {
     }
   }
 
-  kerparner(300, 1);
-  kerparner(50, 2);
-  kerparner(30, 3);
-  kerparner(25, 4);
-  kerparner(20, 5);
-  kerparner(10, 6);
+  // kerparner(300, 1);
+  // kerparner(50, 2);
+  // kerparner(30, 3);
+  // kerparner(25, 4);
+  // kerparner(20, 5);
+  // kerparner(10, 6);
+  kerparner(4, 7);
+
 
   for (let y = 0; y < matrix.length; ++y) {
     for (let x = 0; x < matrix[y].length; ++x) {
@@ -92,7 +97,10 @@ function createGame() {
         let bomb = new Bomb(x, y, 6)
         bombArr.push(bomb)
       }
-      else if (matrix[y][x] == 8) {
+      else if (matrix[y][x] == 7) {
+        console.log(laserArr);
+        let laser = new Laser(x, y, 7)
+        laserArr.push(laser)
       }
     }
   }
@@ -116,6 +124,9 @@ function drawGame() {
   }
   for (let i in bombArr) {
     bombArr[i].start();
+  }
+  for (let i in laserArr) {
+    laserArr[i].active();
   }
   io.emit("matrix", matrix)
 }

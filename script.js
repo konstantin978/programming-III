@@ -9,7 +9,7 @@ const grassStd = document.getElementById('grass')
 
 
 function setup() {
-    frameRate(1);
+    frameRate(10);
     createCanvas(b * side, a * side);
     background('#acacac');
 
@@ -44,16 +44,19 @@ function drawGame(matrix) {
                 fill("yellow")
             }
             else if (matrix[y][x] == 3) {
-                fill("brown")
+                fill("darkgreen")
             }
             else if (matrix[y][x] == 4) {
-                fill("red")
+                fill("darkred")
             }
             else if (matrix[y][x] == 5) {
                 fill("cyan")
             }
             else if (matrix[y][x] == 6) {
                 fill("black")
+            }
+            else if (matrix[y][x] == 7) {
+                fill("red")
             }
             rect(x * side, y * side, side, side);
         }

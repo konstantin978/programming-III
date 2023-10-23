@@ -17,7 +17,7 @@ module.exports = class Grass extends LivingCreature {
         ];
     }
     mul() {
-        grassSt++
+        grassSt++;
         this.multiply++;
         var newCell = random(this.chooseCell(0));
         if (this.multiply >= 5 && newCell) {

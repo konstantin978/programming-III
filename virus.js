@@ -25,12 +25,14 @@ module.exports = class Virus extends LivingCreature {
         return super.chooseCell(character)
     }
     mul() {
-        var newCell = random(this.chooseCell(0, 2, 3, 5));
+        var newCell = random([...this.chooseCell(0), ...this.chooseCell(2), ...this.chooseCell(3), ...this.chooseCell(5), ...this.chooseCell(7)]);
         if (newCell) {
             const newvirus = new Virus(newCell[0], newCell[1], this.index);
             virusArr.push(newvirus);
             matrix[newCell[1]][newCell[0]] = 4;
             this.energy = 20;
+        } else if (matrix[newCell[1]][newCell[0]] == 7) {
+            this.die();
         }
     }
 

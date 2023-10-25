@@ -104,5 +104,9 @@ module.exports = class Bomb {
             if (!(grassArr[i].x == x && grassArr[i].y == y)) continue;
             grassArr.splice(i, 1);
         }
+        for (const i in laserArr) {
+            if (!(laserArr[i].x == x && laserArr[i].y == y)) continue;
+            laserArr.splice(i, 1);
+        }
     }
 }

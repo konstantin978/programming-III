@@ -1,7 +1,7 @@
 const LivingCreature = require("./livingCreature")
 const random = require("./random");
 
-module.exports = class GrassEater extends LivingCreature{
+module.exports = class GrassEater extends LivingCreature {
     constructor(x, y, index) {
         super(x, y, index)
         this.energy = 8;
@@ -26,12 +26,14 @@ module.exports = class GrassEater extends LivingCreature{
         return super.chooseCell(character)
     }
     mul() {
-        var newCell = random(this.chooseCell(0));
+        var newCell = random([...this.chooseCell(0), ...this.chooseCell(7)]);
         if (newCell) {
             let newGrassE = new GrassEater(newCell[0], newCell[1], this.index);
             grassEaterArr.push(newGrassE);
             matrix[newCell[1]][newCell[0]] = 2;
             this.energy = 8;
+        } else if (matrix[newCell[1]][newCell[0]] == 7) {
+            this.die();
         }
     }
 

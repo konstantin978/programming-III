@@ -21,14 +21,21 @@ module.exports = class Laser extends LivingCreature {
 
     active() {
         if (this.energy >= 1) {
-            var newCell = random(this.chooseCell(0));
+            var newCell = random([
+                ...this.chooseCell(0), 
+                ...this.chooseCell(2),
+                ...this.chooseCell(3),
+                ...this.chooseCell(4),
+                ...this.chooseCell(5),
+                ...this.chooseCell(6)
+            ]);
+
             if (newCell) {
-                let newlaser = new Laser(newCell[0], newCell[1], this.index);
+                const newlaser = new Laser(newCell[0], newCell[1], this.index);
                 laserArr.push(newlaser);
                 matrix[newCell[1]][newCell[0]] = 7;
                 this.energy = 10;
             }
-
             this.energy--;
         } else if (this.energy <= 0) {
             this.die();

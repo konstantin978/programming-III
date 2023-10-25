@@ -61,12 +61,12 @@ function createGame() {
     }
   }
 
-  // kerparner(300, 1);
-  // kerparner(50, 2);
-  // kerparner(30, 3);
-  // kerparner(25, 4);
-  // kerparner(20, 5);
-  // kerparner(10, 6);
+  kerparner(300, 1);
+  kerparner(50, 2);
+  kerparner(30, 3);
+  kerparner(25, 4);
+  kerparner(20, 5);
+  kerparner(10, 6);
   kerparner(4, 7);
 
 
@@ -98,7 +98,6 @@ function createGame() {
         bombArr.push(bomb)
       }
       else if (matrix[y][x] == 7) {
-        console.log(laserArr);
         let laser = new Laser(x, y, 7)
         laserArr.push(laser)
       }

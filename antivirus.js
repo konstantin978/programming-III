@@ -1,7 +1,7 @@
 const LivingCreature = require("./livingCreature")
 const random = require("./random");
 
-module.exports = class Antivirus extends LivingCreature{
+module.exports = class Antivirus extends LivingCreature {
     constructor(x, y, index) {
         super(x, y, index)
         this.energy = 20;
@@ -54,7 +54,7 @@ module.exports = class Antivirus extends LivingCreature{
 
     move() {
         this.energy--;
-        let emptyCells0 = this.chooseCell(0)
+        let emptyCells0 = random([this.chooseCell(0), this.chooseCell(2), this.chooseCell(7)])
         let newCell0 = random(emptyCells0)
         if (newCell0) {
             let newX0 = newCell0[0]
@@ -63,6 +63,8 @@ module.exports = class Antivirus extends LivingCreature{
             matrix[newY0][newX0] = 5
             this.x = newX0
             this.y = newY0
+        } else if (matrix[this.y][this.x] == 7) {
+            this.die();
         }
     }
 

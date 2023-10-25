@@ -1,12 +1,14 @@
-
 const socket = io();
 const side = 15;
 const a = 55;
 const b = 70;
+
 const grassActStd = document.getElementById('grassActual')
 const grassStd = document.getElementById('grass')
+const button = document.getElementById('btn')
 
-
+let randomCellX = 0
+let randomCellY = 0
 
 function setup() {
     frameRate(10);
@@ -68,5 +70,11 @@ function drawGame(matrix) {
         })
     }
 }
+
+function connect() {
+    socket.on("bomb", spawnBomb) 
+}
+
+button.addEventListener("click", connect)
 
 socket.on("matrix", drawGame)

@@ -23,9 +23,6 @@ const Virus = require('./virus')
 const Laser = require('./laser')
 
 
-
-
-
 grassArr = [];
 grassEaterArr = [];
 gshArr = [];
@@ -38,6 +35,8 @@ grassStat = 0;
 // grassEaterCount = 20;
 matrix = [];
 grassSt = 0;
+var randomX;
+var randomY;
 const a = 55;
 const b = 70;
 
@@ -128,10 +127,17 @@ function drawGame() {
     laserArr[i].active();
   }
   io.emit("matrix", matrix)
+  randomX = random(matrix.length)
+  randomY = random(matrix[0].length)
 }
 createGame()
 
 let intervalID;
+
+function spawnBomb() {
+  let bomb = new Bomb(randomX, randomY, 6)
+  bombArr.push(bomb)
+}
 
 function startGame() {
   clearInterval(intervalID)
@@ -140,8 +146,10 @@ function startGame() {
     drawGame()
     io.emit('grassSt', grassArr.length)
     io.emit('grassStat', grassStat)
+    io.emit('bomb', spawnBomb)
   }, 200)
 }
+
 
 
 io.on("connection", (socket) => {

@@ -34,7 +34,13 @@ module.exports = class Laser extends LivingCreature {
                 const newlaser = new Laser(newCell[0], newCell[1], this.index);
                 laserArr.push(newlaser);
                 matrix[newCell[1]][newCell[0]] = 7;
-                this.energy = 10;
+                if (weather == 'winter'){
+                    this.energy = 5;
+                }  else if (weather == 'summer'){
+                    this.energy = 15;
+                }  else{
+                    this.energy = 10;
+                }
             }
             this.energy--;
         } else if (this.energy <= 0) {

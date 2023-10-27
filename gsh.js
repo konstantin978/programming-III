@@ -30,7 +30,13 @@ module.exports = class Gishatich extends LivingCreature {
             let newGSH = new Gishatich(newCell[0], newCell[1], this.index);
             gshArr.push(newGSH);
             matrix[newCell[1]][newCell[0]] = 3;
-            this.energy = 15;
+            if (weather == 'winter'){
+                this.energy = 3;
+            }  else if (weather == 'summer'){
+                this.energy = 15;
+            }  else{
+                this.energy = 6;
+            }
         } else if (matrix[newCell[1]][newCell[0]] == 7) {
             this.die();
         }

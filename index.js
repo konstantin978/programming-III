@@ -31,14 +31,16 @@ antivirusArr = [];
 bombArr = [];
 laserArr = [];
 grassStat = 0;
+days = 0;
+weather = "winter";
 // grassCount = 10;
 // grassEaterCount = 20;
 matrix = [];
 grassSt = 0;
 randomX = 0;
 randomY = 0;
-const a = 10;
-const b = 10;
+const a = 55;
+const b = 70;
 
 for (let i = 0; i < a; i++) {
   matrix.push([]);
@@ -60,13 +62,13 @@ function createGame() {
     }
   }
 
-  kerparner(15, 1);
-  // kerparner(50, 2);
-  // kerparner(30, 3);
-  // kerparner(25, 4);
-  // kerparner(20, 5);
-  // kerparner(10, 6);
-  // kerparner(2, 7);
+  kerparner(300, 1);
+  kerparner(50, 2);
+  kerparner(70, 3);
+  kerparner(25, 4);
+  kerparner(20, 5);
+  kerparner(10, 6);
+  kerparner(2, 7);
 
 
   for (let y = 0; y < matrix.length; ++y) {
@@ -129,7 +131,26 @@ function drawGame() {
   io.emit("matrix", matrix)
   randomX = random(matrix.length)
   randomY = random(matrix[0].length)
+
+  days++;
+    
+  if(days <= 10){
+      weather = "winter";
+  }
+  else if(days > 10 && days <= 20){
+      weather = "spring";
+  }
+  else if(days > 20 && days <= 30){
+      weather = "summer";
+  }
+  else if(days > 30 && days <= 40){
+      weather = "autumn";
+  }
+  else if (days == 41){
+      days = 0;
+  }
 }
+
 createGame()
 
 let intervalID;
@@ -150,6 +171,7 @@ function startGame() {
     io.emit('grassSt', grassArr.length)
     io.emit('grassStat', grassStat)
     io.emit('laser', laserArr.length)
+    io.emit('weather', weather)
   }, 200)
 }
 

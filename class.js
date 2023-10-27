@@ -20,13 +20,32 @@ module.exports = class Grass extends LivingCreature {
         grassSt++;
         this.multiply++;
         var newCell = random(this.chooseCell(0));
-        if (this.multiply >= 5 && newCell) {
+        if (weather == 'winter') {
+            if (this.multiply >= 10 && newCell) {
             const newGrass = new Grass(newCell[0], newCell[1], this.index);
             grassArr.push(newGrass);
             matrix[newCell[1]][newCell[0]] = 1;
             this.multiply = 0;
-        grassStat++;
+            grassStat++;
+            }
+        }   else if (weather == 'spring' && weather == 'autumn') {
+            if (this.multiply >= 4 && newCell) {
+            const newGrass = new Grass(newCell[0], newCell[1], this.index);
+            grassArr.push(newGrass);
+            matrix[newCell[1]][newCell[0]] = 1;
+            this.multiply = 0;
+            grassStat++;
+            }
+        }   else if (weather == 'summer') {
+            if (this.multiply >= 2 && newCell) {
+            const newGrass = new Grass(newCell[0], newCell[1], this.index);
+            grassArr.push(newGrass);
+            matrix[newCell[1]][newCell[0]] = 1;
+            this.multiply = 0;
+            grassStat++;
+            }
         }
+
     }
 
     // die() {

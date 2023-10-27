@@ -30,7 +30,13 @@ module.exports = class Virus extends LivingCreature {
             const newvirus = new Virus(newCell[0], newCell[1], this.index);
             virusArr.push(newvirus);
             matrix[newCell[1]][newCell[0]] = 4;
-            this.energy = 20;
+            if (weather == 'winter'){
+                this.energy = 10;
+            }  else if (weather == 'summer'){
+                this.energy = 25;
+            }  else{
+                this.energy = 15;
+            }
         } else if (matrix[newCell[1]][newCell[0]] == 7) {
             this.die();
         }

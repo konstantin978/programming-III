@@ -35,10 +35,10 @@ grassStat = 0;
 // grassEaterCount = 20;
 matrix = [];
 grassSt = 0;
-var randomX;
-var randomY;
-const a = 55;
-const b = 70;
+randomX = 0;
+randomY = 0;
+const a = 10;
+const b = 10;
 
 for (let i = 0; i < a; i++) {
   matrix.push([]);
@@ -60,13 +60,13 @@ function createGame() {
     }
   }
 
-  kerparner(300, 1);
-  kerparner(50, 2);
-  kerparner(30, 3);
-  kerparner(25, 4);
-  kerparner(20, 5);
-  kerparner(10, 6);
-  kerparner(4, 7);
+  kerparner(15, 1);
+  // kerparner(50, 2);
+  // kerparner(30, 3);
+  // kerparner(25, 4);
+  // kerparner(20, 5);
+  // kerparner(10, 6);
+  // kerparner(2, 7);
 
 
   for (let y = 0; y < matrix.length; ++y) {
@@ -134,10 +134,13 @@ createGame()
 
 let intervalID;
 
-function spawnBomb() {
-  let bomb = new Bomb(randomX, randomY, 6)
-  bombArr.push(bomb)
-}
+// function spawnbomb() {
+//   let bomb = new Bomb(randomX, randomY, 6)
+//   bombArr.push(bomb)
+// }
+
+
+// io.emit('bomb', spawnbomb)
 
 function startGame() {
   clearInterval(intervalID)
@@ -146,7 +149,7 @@ function startGame() {
     drawGame()
     io.emit('grassSt', grassArr.length)
     io.emit('grassStat', grassStat)
-    io.emit('bomb', spawnBomb)
+    io.emit('laser', laserArr.length)
   }, 200)
 }
 

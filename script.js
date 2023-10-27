@@ -5,10 +5,9 @@ const b = 70;
 
 const grassActStd = document.getElementById('grassActual')
 const grassStd = document.getElementById('grass')
+const laserStd = document.getElementById('laser')
 const button = document.getElementById('btn')
 
-let randomCellX = 0
-let randomCellY = 0
 
 function setup() {
     frameRate(10);
@@ -68,13 +67,31 @@ function drawGame(matrix) {
         socket.on('grassStat', (grassStat) => {
             grassStd.innerHTML = `${grassStat} Grasses from game start`;
         })
+        socket.on('laser', (laser) => {
+            if (laser) {
+                laserStd.innerHTML = `${laser} Lasers Active`  
+            } else {
+                laserStd.innerHTML = 'Laser Deactive'
+            }
+        })
     }
 }
 
-function connect() {
-    socket.on("bomb", spawnBomb) 
-}
-
-button.addEventListener("click", connect)
-
 socket.on("matrix", drawGame)
+
+// =================================================================================================================//
+// socket.on('bomb', (hi) => {
+//     let bomb = new Bomb(randomX, randomY, 6)
+//     bombArr.push(bomb)
+// })
+
+// function connect(randomX, randomY, bombArr, Bomb) {
+
+// }
+
+
+// button.addEventListener('click', connect);
+// =================================================================================================================//
+
+
+

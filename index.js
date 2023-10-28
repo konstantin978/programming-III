@@ -62,13 +62,13 @@ function createGame() {
     }
   }
 
-  kerparner(300, 1);
-  kerparner(50, 2);
-  kerparner(70, 3);
-  kerparner(25, 4);
-  kerparner(20, 5);
-  kerparner(10, 6);
-  kerparner(2, 7);
+  kerparner(20, 1);
+  // kerparner(50, 2);
+  // kerparner(70, 3);
+  // kerparner(25, 4);
+  // kerparner(20, 5);
+  // kerparner(10, 6);
+  // kerparner(2, 7);
 
 
   for (let y = 0; y < matrix.length; ++y) {
@@ -129,24 +129,25 @@ function drawGame() {
     laserArr[i].active();
   }
   io.emit("matrix", matrix)
+  io.emit("weather", weather)
   randomX = random(matrix.length)
   randomY = random(matrix[0].length)
 
   days++;
     
-  if(days <= 10){
+  if(days <= 25){
       weather = "winter";
   }
-  else if(days > 10 && days <= 20){
+  else if(days > 25 && days <= 50){
       weather = "spring";
   }
-  else if(days > 20 && days <= 30){
+  else if(days > 50 && days <= 75){
       weather = "summer";
   }
-  else if(days > 30 && days <= 40){
+  else if(days > 75 && days <= 100){
       weather = "autumn";
   }
-  else if (days == 41){
+  else if (days == 101){
       days = 0;
   }
 }
@@ -171,7 +172,6 @@ function startGame() {
     io.emit('grassSt', grassArr.length)
     io.emit('grassStat', grassStat)
     io.emit('laser', laserArr.length)
-    io.emit('weather', weather)
   }, 200)
 }
 

@@ -62,13 +62,13 @@ function createGame() {
     }
   }
 
-  kerparner(20, 1);
-  // kerparner(50, 2);
-  // kerparner(70, 3);
-  // kerparner(25, 4);
-  // kerparner(20, 5);
-  // kerparner(10, 6);
-  // kerparner(2, 7);
+  kerparner(500, 1);
+  kerparner(60, 2);
+  kerparner(75, 3);
+  kerparner(25, 4);
+  kerparner(20, 5);
+  kerparner(10, 6);
+  kerparner(2, 7);
 
 
   for (let y = 0; y < matrix.length; ++y) {
@@ -130,25 +130,27 @@ function drawGame() {
   }
   io.emit("matrix", matrix)
   io.emit("weather", weather)
-  randomX = random(matrix.length)
-  randomY = random(matrix[0].length)
+  randomX = random(matrix.length - 1)
+  randomY = random(matrix[0].length - 1)
+
+
 
   days++;
-    
-  if(days <= 25){
-      weather = "winter";
+
+  if (days <= 25) {
+    weather = "winter";
   }
-  else if(days > 25 && days <= 50){
-      weather = "spring";
+  else if (days > 25 && days <= 50) {
+    weather = "spring";
   }
-  else if(days > 50 && days <= 75){
-      weather = "summer";
+  else if (days > 50 && days <= 75) {
+    weather = "summer";
   }
-  else if(days > 75 && days <= 100){
-      weather = "autumn";
+  else if (days > 75 && days <= 100) {
+    weather = "autumn";
   }
-  else if (days == 101){
-      days = 0;
+  else if (days == 101) {
+    days = 0;
   }
 }
 
@@ -156,17 +158,17 @@ createGame()
 
 let intervalID;
 
-// function spawnbomb() {
-//   let bomb = new Bomb(randomX, randomY, 6)
-//   bombArr.push(bomb)
-// }
-
-
-// io.emit('bomb', spawnbomb)
+function spawnbomb() {
+  if (matrix[randomY][randomX] == 6) {
+    console.log(1);
+  } else{
+  let bomb = new Bomb(randomX, randomY, 6)
+  bombArr.push(bomb)
+}
+}
 
 function startGame() {
   clearInterval(intervalID)
-  // createGame()
   intervalID = setInterval(() => {
     drawGame()
     io.emit('grassSt', grassArr.length)
@@ -175,9 +177,41 @@ function startGame() {
   }, 200)
 }
 
-
-
 io.on("connection", (socket) => {
   socket.emit("matrix", matrix)
   startGame();
+  socket.on('bomb', (a2) => {
+    if (a2) {
+      spawnbomb()
+      a2 = false
+    }
+  })
+
+  socket.on('changeWeatherToWinter', (change) => {
+    if (change) {
+      weather = 'winter';
+      days = 0;
+    }
+  })
+
+  socket.on('changeWeatherToSpring', (change) => {
+    if (change) {
+      weather = 'spring';
+      days = 26;
+    }
+  })
+
+  socket.on('changeWeatherToSummer', (change) => {
+    if (change) {
+      weather = 'summer';
+      days = 51;
+    }
+  })
+
+  socket.on('changeWeatherToAutumn', (change) => {
+    if (change) {
+      weather = 'autumn';
+      days = 76;
+    }
+  })
 })

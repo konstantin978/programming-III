@@ -7,3 +7,87 @@
 body {
     background-color: gray;
 }
+
+#spawnBomb {
+    background-color: white;
+    font-size: large;
+    color: black;
+    border: 3px black solid;
+    border-radius: 25px;
+    width: 300px;
+    height: 40px;
+}
+
+#spawnBomb:hover {
+    background-color: black;
+    color: white;
+    border-color: grey; 
+}
+
+
+#changeWeatherToWinter {
+    background-color: white;
+    font-size: large;
+    color: black;
+    border: 3px black solid;
+    border-radius: 25px;
+    width: 300px;
+    height: 40px;
+}
+
+#changeWeatherToWinter:hover {
+    background-color: black;
+    color: white;
+    border-color: grey; 
+}
+
+
+#changeWeatherToSpring {
+    background-color: white;
+    font-size: large;
+    color: green;
+    border: 3px black solid;
+    border-radius: 25px;
+    width: 300px;
+    height: 40px;
+}
+
+#changeWeatherToSpring:hover {
+    background-color: rgb(0, 85, 0);
+    color: yellowgreen;
+    border-color: darkgreen; 
+}
+
+
+#changeWeatherToSummer {
+    background-color: white;
+    font-size: large;
+    color: yellow;
+    border: 3px black solid;
+    border-radius: 25px;
+    width: 300px;
+    height: 40px;
+}
+
+#changeWeatherToSummer:hover {
+    background-color: rgb(200, 200, 48);
+    color: yellow;
+    border-color: yellow; 
+}
+
+
+#changeWeatherToAutumn {
+    background-color: white;
+    font-size: large;
+    color: orange;
+    border: 3px black solid;
+    border-radius: 25px;
+    width: 300px;
+    height: 40px;
+}
+
+#changeWeatherToAutumn:hover {
+    background-color: orange;
+    color: darkorange;
+    border-color: darkorange; 
+}

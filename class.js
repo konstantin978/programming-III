@@ -28,7 +28,7 @@ module.exports = class Grass extends LivingCreature {
             this.multiply = 0;
             grassStat++;
             }
-        }   else if (weather == 'spring' && weather == 'autumn') {
+        }   else if (weather == 'spring' || weather == 'autumn') {
             if (this.multiply >= 4 && newCell) {
             const newGrass = new Grass(newCell[0], newCell[1], this.index);
             grassArr.push(newGrass);

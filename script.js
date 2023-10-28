@@ -2,12 +2,21 @@ const socket = io();
 const side = 15;
 const a = 55;
 const b = 70;
+var weather2;
+
+console.log('Game Created by Konstantin Ghevondyan)');
 
 
 const grassActStd = document.getElementById('grassActual')
 const grassStd = document.getElementById('grass')
 const laserStd = document.getElementById('laser')
-const button = document.getElementById('btn')
+const spawnBomb = document.getElementById('spawnBomb')
+const changeWeatherToWinter = document.getElementById('changeWeatherToWinter')
+const changeWeatherToSpring = document.getElementById('changeWeatherToSpring')
+const changeWeatherToSummer = document.getElementById('changeWeatherToSummer')
+const changeWeatherToAutumn = document.getElementById('changeWeatherToAutumn')
+
+
 
 
 function setup() {
@@ -33,18 +42,23 @@ function setup() {
     }, 25000);
 }
 
+socket.on('weather', (weather) => {
+    weather2 = weather;
+})
+
 function drawGame(matrix) {
-    socket.on("weather", (weather) => {
         for (let y = 0; y < matrix.length; y++) {
             for (let x = 0; x < matrix[y].length; x++) {
-                if (matrix[y][x] == 1 && weather == 'winter') {
-                    fill('lightgreen')
-                }   else if(matrix[y][x] == 1 && weather == 'spring') {
-                    fill('yellowgreen')
-                }   else if(matrix[y][x] == 1 && weather == 'summer') {
-                    fill('green')
-                }   else if(matrix[y][x] == 1 && weather == 'autumn') {
-                    fill('orange')
+                if (matrix[y][x] == 1){
+                    if (weather2 == 'winter') {
+                        fill("lightgreen")
+                    } else if(weather2 == 'spring') {
+                        fill('green')
+                    } else if(weather2 == 'summer') {
+                        fill('#c0ff3e')
+                    } else {   
+                        fill('#ebcc2f')
+                    }
                 }
                 else if (matrix[y][x] == 0) {
                     fill("#acacac");
@@ -70,19 +84,18 @@ function drawGame(matrix) {
                 rect(x * side, y * side, side, side);
             }
         }
-    })
 
     socket.on('grassSt', (grassSt) => {
-        grassActStd.innerHTML = `${grassSt} Grasses in game`;
+        grassActStd.innerHTML = `${grassSt} Grasses in Game`;
     })
     socket.on('grassStat', (grassStat) => {
-        grassStd.innerHTML = `${grassStat} Grasses from game start`;
+        grassStd.innerHTML = `${grassStat} Grasses from Game start`;
     })
     socket.on('laser', (laser) => {
         if (laser) {
-            laserStd.innerHTML = `${laser} Lasers Active`
+            laserStd.innerHTML = `${laser} Lasers Activated`
         } else {
-            laserStd.innerHTML = 'Laser Deactive'
+            laserStd.innerHTML = 'Lasers Deactivated'
         }
     })
 
@@ -103,20 +116,39 @@ socket.on('weather', (weather) => {
 socket.on("matrix", drawGame)
 
 
+var a2 = false;
+spawnBomb.addEventListener('click', function() {
+    a2 = true
+    socket.emit('bomb', a2)
+});
 
-// =================================================================================================================//
-// socket.on('bomb', (hi) => {
-//     let bomb = new Bomb(randomX, randomY, 6)
-//     bombArr.push(bomb)
-// })
+var changewinter = false;
+var changespring = false;
+var changesummer = false;
+var changeautumn = false;
 
-// function connect(randomX, randomY, bombArr, Bomb) {
+changeWeatherToWinter.addEventListener('click', function() {
+    socket.emit('changeWeatherToWinter', changewinter)
+    changewinter = true;
+})
 
-// }
+changeWeatherToSpring.addEventListener('click', function() {
+    socket.emit('changeWeatherToSpring', changespring)
+    changespring = true;
+})
+
+changeWeatherToSummer.addEventListener('click', function() {
+    socket.emit('changeWeatherToSummer', changesummer)
+    changesummer = true;
+})
+
+changeWeatherToAutumn.addEventListener('click', function() {
+    socket.emit('changeWeatherToAutumn', changeautumn)
+    changeautumn = true;
+})
 
 
-// button.addEventListener('click', connect);
-// =================================================================================================================//
+
 
 
 
